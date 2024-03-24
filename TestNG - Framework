@@ -1,0 +1,395 @@
+* TestNG Tutotrial
+- Importance of TestNG
+- Installation and configuration in Eclipse
+- Test XML file importance
+- Controlling Testcase executions from Testng XML files
+- Inculde Excel Mechanism
+- Understanding TestNG Annotations
+- Groups
+- Data Provider Annotation
+- Annotation helper Attributes
+- Parameterization in TestNG xml file
+- Running Test in parallel with TestNG
+
+-------------------------------------------------------------------------------------------
+1) TestNG
+package basic;
+
+import org.testng.annotations.Test;
+
+public class test {
+	
+	//TestNG can act as a java compiler and execute all the test cases
+	//Test is one of the annotation which shall recoganize the test writen after the @Test
+	//TestNG have custom library inside them which shall provide with all the details for the test suits
+	//Each method is treated as a testcase
+	@Test
+	public void Demo() {
+		System.out.println("Hello");
+	}
+
+}
+----------------------------------------------------------------------------------
+2) Order of execution
+- In testNG order of execution depends upon the alphabetical order
+
+3) what is testing conventions
+- Define the start name for a perticular module as standard for all the methods
+- Shall have consistency in the code
+
+4) Can define multiple test cases in a single class
+5) To differentiate between the tests, just put in as @Test immediately the TestNG shall consider it as a new test case, you have to complusoryly rap it in a method.
+------------------------------------------------------------------------------------
+6) Trigger TestNG through .XML file
+- Right click on the project > TestNG > Convert TO testNG >Next > Finish
+
+7) Collection of testfolder is noting but testSuit
+8) We can define multiple class under a suit
+9) A suit can have multiple modules
+10) In a suit we can have multipe test suit folders
+
+On single click all the test cases should be run
+
+--------------------------------------------------------------------------------------------------
+11) EXAMPLE FOR THE .XML FILE
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Loan Departement">
+  <test thread-count="5" name="Personal Loan">
+    <classes>
+      <!-- These below are the class (package.class name)-->
+      <class name="basic.test"/>
+      <class name="basic.test2"/>
+    </classes>
+  </test>
+  <test name = "Car Loan">
+	  <classes>
+      <class name="basic.test3"/>
+      <class name="basic.test4"/>
+  </classes>
+  </test>
+</suite> 
+
+--------------------------------------------------------------------------------------------------------
+12) How to skip inside class test cases. - With the help of "exclude" tag we can skip a perticular method.
+<test name = "Car Loan">
+	  <classes>
+	  <!-- Skip a particular test inside a perticular class-->
+	  <class name="basic.test3">
+	  <!-- Shall define the parent tag as a method of the perticular class test3 -->
+	  <methods>
+	  <exclude name="mobileLogin">
+	  </exclude>	  
+	  </methods>
+	  </class>
+---------------------------------------------------------------------------------------------------------------
+13) How to include the test cases. - With the help of "include" tag
+	  <methods>
+	  <include name="mobileLogin">
+	  </include>	  
+	  </methods>
+-------------------------------------------------------------------------------------------------------------
+14) How to exclude the methods in bulk (example if there are 30 testcase needs to be excluded from the 100 test cases)
+- If there is a single key which have been used for all the methods we can exclude it in one go
+- .* shall exclude all the test cases which have the starting key word as defined.
+<exclude name="mobile.*">
+-------------------------------------------------------------------------------------------------------------
+15) How to run all the test cases from package level
+<test name="Personal Loan">
+	  <packages><package name="TestNG"></package></packages>
+  </test>
+-----------------------------------------------------------------------------------------------------------------
+16) TestNG annotations.
+-1st condition (Before Test)
+Delete all the data from the database before you automate the scripts.
+We have to put in the '@BeforeTest' in the perticular class so it shall be be executed first
+
+        @BeforeTest
+	public void testPreRequisit()
+	{
+		System.out.println("I will execute first");
+	}
+
+-2nd condition (After Test)
+How to execute the after test. it shall only execute at the end. 
+
+        @AfterTest
+	public void testAfter() {
+		System.out.println("I will execute after test");
+	}
+
+-3rd condition (Before Suite)
+Before suit means it shall be executed before all the test is been execute in the xml file
+Because suit is parent to the test folders
+Mainly we shall put in the enviorment details in the suit (We shall get multiple suite.)
+
+        @BeforeSuite
+	public void testBeforeSuit() {
+		System.out.println("I will execute before suite");
+	}
+
+-4th condition (After suite)
+Before suit means it shall be executed after all the test is been execute in the xml file
+Because suit is parent to the test folders
+Mainly we shall put in the enviorment details in the suit (We shall get multiple suite.)
+
+        @AfterSuite
+	public void testAfterSuit() {
+		System.out.println("I will execute before suite");
+	}
+
+-5th condition (Before Method)
+It is specific to the class file.
+Before executing each and every test that perticular before method shall be executed
+ex - If there are 4 test cases in a perticular class it shall be executed 4 times
+
+        @BeforeMethod
+	public void testBeforeCases() {
+		System.out.println("I will execute before each test case");
+	}
+
+-6th condition (After Method)
+It is specific to the class file
+Afterexecuting each and every test that perticular after method shall be executed
+ex - If there are 4 test cases in a perticular class it shall be executed 4 times
+
+        @AfterMethod
+	public void testAfterCases() {
+		System.out.println("I will execute after each test case");
+	}
+
+-7th condition (Before Class)
+It shall be executed before the test case executed for the perticular class
+The scope of this is limit to the perticular class
+
+        @BeforeClass
+	public void testBeforClass() {
+		System.out.println("I will execute before the class");
+	}
+
+-8th condition (After class)
+It shall be executed after the test case executed for the perticular class
+The scope of this is limit to the perticular class
+
+        @AfterClass
+	public void testAfterClass() {
+		System.out.println("I will execute before the class");
+	}
+
+------------------------------------------------------------------------------------------------------------------------------------
+17) Groups concept
+Lets take an example if there are 100 testcases and client asked us to execute only a few test cases from each class let assume only 4 testcases from 4 different classes. (include)
+
+If you want to run all the smoke test cases exclude the group. How to do that (exclude)
+How to do that using group.
+
+
+- We have to provide them with a Tag which we have to run in groups (groups="Smoke") --tag
+
+        @Test(groups={"Smoke"})
+	public void mobilewebLogin() {
+		 //Selenium code
+		System.out.println("mobileWebLogin");
+	}
+
+- How to put in the same into the .xml file below the test -->
+Both you can do include and exclude
+--> <groups><run><include name="Smoke"></include></run></groups>
+--> <groups><run><exclude name="Smoke"></exclude></run></groups>
+
+<suite name="Loan Departement">
+  <test name="Smoke Testcases">
+	  <groups><run><include name="Smoke"></include></run></groups>
+    <classes>
+		<!-- These below are the class (package.class name)-->
+      <class name="basic.test2"/>
+      <class name="basic.test3"/>
+    </classes>
+  </test>
+</suite>
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------
+-> Helper Attributes :-
+18) Dependisum in TestNG, with the key work called depends
+Dependency means if we required to we have to get the document from a site we need to first login then download the document.
+Means the download test case is depend upon the login test case.
+Means first the login test case shall be executed then the download test case
+
+--> (dependsOnMethods=("testDemo2"))
+
+        @Test(groups={"Smoke"})
+	public void testDemo2() {
+		System.out.println("Test2");
+	}
+	
+	@Test(dependsOnMethods=("testDemo2"))
+	public void testDemo3() {
+		System.out.println("Test2");
+	}
+
+- Similarly you can depends upon multiple methods also.
+
+(dependsOnMethods={"testDemo2","testDemo3"})
+
+19) Enabled Helper attribute --> How to off the test cases
+- If we have to skip a perticular test
+For example if the singIn functionality is not working and you have to skip it.
+It shall skip the perticular testcase
+--> (enabled=false), (enabled=true) --> it will on again.
+
+	@Test(enabled=false)
+	public void testDemo4() {
+		System.out.println("Test2");
+	}
+
+	@Test(enabled=true)
+	public void testDemo5() {
+		System.out.println("Test5");
+	}
+
+20) TimeOut Helper attribute --> For a perticular test
+- If one of your test cases is taking long time to execute you can timeout it
+- 100 means one second.
+
+        @Test(timeOut=4000)
+	public void testDemo6() {
+		System.out.println("Test6");
+	}
+----------------------------------------------------------------------------------------------------------------------------------------
+21) Parameterization in TestNG xml file. -- Can pass multiple parameter
+Common values - URL or the app package name
+
+-> How to drive the common values from one centralized place.
+We have to define it after the suit.
+
+<parameter name="URL" value="google.com"></parameter>
+
+-> If you feel those are specific to the test case then you have to define it after the test
+
+        @Parameters({"URL"})
+	@Test
+	public void testAfter(String urlName)
+        {
+		System.out.println(urlName);
+	}
+
+
+        @Parameters({"URL","userName"})
+	@Test
+	public void testAfter(String urlName, String userName) {
+		System.out.println(urlName);
+		System.out.println(userName);
+	}
+
+22) DataProvider annotations.
+Means we have to execute on test case with different sets of data.
+
+                 @DataProvider
+	         public Object testGetData() {
+		//1st combination - Username and password
+		//2nd combination - username and password - no credit history
+		//3rd combination - username and passwrod - with fraudent history
+		
+		//Create multidimensional Object array
+		//3 means here how may combinations do you have
+		//2 means in each data sets how many values you are passing
+		//So that means we are defining an array with 3 rows and 2 columns
+		Object[][] data = new Object[3][2];
+		
+		//Columns in the rows are noting but the values for that particular parameter
+		
+		//0 stands for first row and first column
+		//First set data
+		data[0][0] = "firstUserName";
+		data[0][1] = "firstPassword";
+		
+		//Second set data
+		data[1][0] = "secondUserName";
+		data[1][1] = "secondPassword";
+		
+		//Third set data
+		data[2][0] = "thirdUserName";
+		data[2][1] = "thirdPassword";
+		
+		//Once all the data has been defined you have to return it.
+		return data;
+	}
+	
+	//the below test case should run with three different data sets
+	@Test(dataProvider="testGetData")
+	public void testDataProvider(String userName, String password)
+	{
+		System.out.println(userName);
+		System.out.println(password);
+	}
+---------------------------------------------------------------------------------------------------------------------
+23) Listner Interface in TestNG framework
+For example - there is a scenario that you have to take a screenshot on every test Faliur
+You never know when it fails
+When the test case fails it shall re-rout it to a perticular blog where we shall take the screenshot.
+In short how to re-rout
+Listners listens to your test cases.
+
+- We have to define it in a particular class.
+- Also, have to tell the .xml file where exactly the listner class is defined.
+
+- class
+package basic;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+//ITestListners --> it is an interface which implements TestNG Listners
+public class testListners implements ITestListener {
+	
+	@Override
+	public void onTestStart(ITestResult result)
+	{
+		//write the condition
+	}
+	
+	public void onTestSucess(ITestResult result)
+	{
+		//write the condition
+	}
+	
+	public void onTestFalure(ITestResult result)
+	{
+		//write the condition
+	}
+	
+	public void onTestSkipped(ITestResult result)
+	{
+		//write the condition
+	}
+	
+	public void onTestFailedButWithinSucessPercentage(ITestResult result)
+	{
+		//write the condition
+	}
+	
+	public void onStart(ITestContext context)
+	{
+		//write the condition
+	}
+	
+	public void onFinish(ITestContext context)
+	{
+		//write the condition
+	}
+}
+
+
+- inside the .xml below the suit
+<listeners><listener class-name="basic.testListners"></listener></listeners>
+
+- How to know which perticular test is failed.
+When every the test case is failed or any thing it shall be captured in the vaiable result which we have defined.
+
+just define it as - result.getName()
+
+        public void onTestSucess(ITestResult result)
+	{
+		System.out.println("Each test sucessfull" + result.getName());
+	}

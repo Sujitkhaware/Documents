@@ -393,3 +393,24 @@ just define it as - result.getName()
 	{
 		System.out.println("Each test sucessfull" + result.getName());
 	}
+----------------------------------------------------------------------------------------------------------------
+24) Running Test in parallel and generation Reports.
+- If we have to trigger all the test cases paralley you can do that.
+- But that is not suggestable in the real time.
+- The attribute is 'parallel="test"'
+- thread-count means how may test you have to trigger at one time
+
+//Below is for the global level
+<suite name="Loan Departement" parallel= "tests" thread-count="2">
+
+//Run classes parallely
+<test name="Personal Loan" parallel= "classes" thread-count="2">
+
+--------------------------------------------------------------------------------------------------------------------
+25) Get the report
+- Once the.xml file is executed
+- Refresh the project
+- go to the folder 'test-output'
+- there is a file 'index.html', right click properties > copy the path
+- open it in a browser
+- You shall get the result

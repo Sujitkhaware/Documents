@@ -1,0 +1,27 @@
+1) For System.out.println
+
+* type --> sysout  --> CTRL + space --> Hit enter
+
+2) How to format and align the code in Eclips ?
+
+* autoformat the code --> CTRL + SHIFT + F
+
+3) Naming Conventions in defining class, Variables and Method name
+ 
+* Class Name > The starting word shall be always captal letter and the remaining shall be in small.
+- Name
+* Variable Name > The starting word shall be always small (first word), but for the second word it shall be capital same applied to the following subsiquent word. e.g., mousePad, textPad, letterHead. it is called camal case standard.
+-sujitKhaware
+* Method Name > The starting word shall be always small (first word), but for the second word it shall be capital same applied to the following subsiquent word. e.g., mousePad, textPad, letterHead. it is called camal case standard.
+
+
+4) How to debug the code in eclipes.
+
+* you can execute step by step and check at each step.
+* Right click on the numerical count on to the left hand side of the main script window > Toggal Breakpoint
+* To end the debug click > 
+* Insted of 'run as' click on 'debug as'.
+* F6 for to execute one by one step.
+* To resume in normal factory F8
+* To get inside the method F5
+* In debugging we can view the values stored in a perticualar variable at the run time.

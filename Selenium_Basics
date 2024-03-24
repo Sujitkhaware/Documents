@@ -1,0 +1,1032 @@
+1) what is the differnce between ChromeDriver and WebDriver.
+ChromeDrive can have the methods of the webdriver as well as its own class methods which might not be run in any other browser that the reason we use the webdriver
+------------------------------------------
+2)Differnce between specifying the system propertly and not defining the system property is that
+If we define it shall directly take the chrome driver from the set loction
+If not the selenium manager shall have to download it from the browser and then run the chrome driverr.
+------------------------------------------
+3)What is the difference between the close and quit
+Close : It shall close only the browser which was originally opened at the first time
+Quit : It shall close all the windows for the browser
+------------------------------------------
+4)What are the different variables
+
+int Num = 5;
+String website = "Sujit";
+char letter = 's';
+double dec1 = 6.5;
+boolean mycart = true;
+
+convert string into int
+Integer.parseInt(String Name)
+------------------------------------------
+5)What are arrays
+We use lenght() method to get size of Array
+In simple array can store multiple values in one single variable
+By writing the square brackets we are giving selenium the knowledge that this is not a simple data type it is an array data type
+		int[] arr = new int[5];
+		arr[0] = 1;
+		arr[1] = 2;
+		arr[2] = 3;
+		arr[6] = 3;
+		arr[4] = 3;
+		arr[5] = 3;
+		
+		int[] arr2 = {1,2,3,4};
+------------------------------------------
+6)What is for loop
+
+//For loop arr length -- 5
+for(int i = 0; i<arr.length; i++)
+{
+System.out.println(arr[i]);
+}
+
+String[] name = {"Sujit", "Khaware"};
+for(int i = 0; i < name.length; i++)
+{
+System.out.println(name[i]);
+}
+
+//Enhanced for loop syntex
+for(String s : name)
+{
+System.out.println(s);
+}
+------------------------------------------------
+7)What is for loop
+
+int[] arr2 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+
+//2,4,6,8,10,12,14
+//if else condition
+//If you want to compare 2 integers in jave we have to use double equal's to ==
+//Break is the key word which will simply exist the for loop
+
+for(int i=0; i<arr2.length; i++)
+{
+if (arr2[i] % 2 == 0)
+{
+System.out.println(arr2[i]);
+break;
+}
+else
+{
+System.out.println(arr2[i]+" is not multiple of 2");
+}
+
+-------------------------------------------------------------------------
+8)What is an arraylist
+We use size() method to get the size of arraylist
+you can dynamically increase the size for the array it shall not be fixed like the simple array.
+Array list is one of the class in java
+If you wan to access any methods for a perticular class you need to create the object.
+You can call it by object.method
+If you want to use any of the class in java you need to import the package in the script.
+
+		ArrayList<String> a = new ArrayList<String>();
+		a.add("Sujit");
+		a.add("Rahul");
+		a.add("Ramesh");
+		a.add("Suraj");
+		a.remove(0);
+		a.get(2);
+		
+		System.out.println(a.get(1));
+
+if you have to use the normal array we have to user length in the for loop
+if we are using the arraylist we have to put it in as size.
+
+		for(int i=0;i<a.size();i++)
+		{
+			System.out.println(a.get(i));
+			
+		}
+		System.out.println("***************");
+		
+		//Enhanced for loop
+		for(String b :a)
+		{
+			System.out.println(b);
+		}
+		
+		System.out.println("***************");
+		
+		//Items present in arraylist or not
+		System.out.println(a.contains("Sujit"));
+
+We do not have the contains method in the normal array
+
+		//Convert the normal array to array list
+		List<int[]> New = Arrays.asList(arr2);
+		System.out.println(New.contains(1));
+--------------------------------------------------------------------------------------------
+9) What is string
+* String is an object that represents the sequence of object
+If there are two arrays for the same name the fist one shall be given the preference and the rest shall point to the first one only
+String can be defined in two ways -- Literal and new
+		
+		String a = "Sujit Khaware";
+		String a1 = "Sujit Khaware";
+		
+If we are using the new operator
+If the values are the same still jave shall create the two different object string
+Because explisitily we are telling the jave to create the new string space
+
+		String s2 = new String("Welcome");
+		String s3 = new String("Welcome");
+
+Split the string
+		String a = "Sujit Khaware";
+		String[] splittedstring =  a.split(" "); //2 String shall be created
+		System.out.println(splittedstring[0]);
+		System.out.println(splittedstring[1]);
+
+String output = driver.findElement(By.cssSelector(".im-para red")).getText().split("at")[1].trim().split(" ")[0];
+
+* Print the string in reverse order
+
+		for (int i=a.length()-1;i>=0;i--)
+		{
+			System.out.println(a.charAt(i));
+		}
+----------------------------------------------------------------------------------------
+10) How to create the method
+Why method - If we are using a perticular method for at many place we can create a method for it and call it every where
+also we do not write the method in the main body.
+When every we are using the public void it can be used in another classes also. Void means what this method is returing
+
+If you have to call the public method in another call, you have to first create the object for the class in which the method is present.
+Then you can access all the method defined in that perticular calls.
+
+We have to always return some return statement for the method
+
+public class MethodDemo_4 {
+
+	public static void main(String[] args) {
+
+		MethodDemo_4 a = new MethodDemo_4();
+		String name = a.getData();
+		
+		System.out.println(name);
+	}
+
+//Method
+	
+	public String getData() 
+	{
+		//System.out.println("Hello");
+		//System.out.println("Hello2");
+		return "Sujit Khaware";
+	}
+
+}
+
+If you have to use the method in the same class in which the method has been defined you have to mark the method as a static so we can directly use it in the same class
+
+	public static String getData() 
+	{
+		//System.out.println("Hello");
+		//System.out.println("Hello2");
+		return "Sujit Khaware";
+	}
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+11) What are the Selenium Web Driver Locators.
+As a part of automation, Selenium Performs actions (such as click,typing) on the page HTML elements
+The locators are the way to identify an HTML element on a web page.
+Selenium webdriver uses any of the below locators to identify the element on the page and perform the action.
+
+Locators are the way to identify an HTML element on a web page. Selenium webdriver users any of the below locators to identify the element on the page and performs the action
+
+ID, Xpath, CSS selector, Name, Class Name, Tag Name, Link Text, Partial Link Test.
+
+* When every there is space in the class name like 'submit signInBtn'. There are two classes defined for the same, then we can use one of the unique class.
+
+//ID
+		driver.findElement(By.id("inputUsername")).sendKeys("Admin");
+		
+		//Link Text
+		//When every you view <a it is linked with the link text that the rule for the html
+		driver.findElement(By.linkText("Forgot your password?")).click();
+		
+		//Xpath
+		//if you want to validate it through the console
+		//$x('//Tagname[@Attribute="Value"]')
+		//--> //Tagname[@Attribute='Value']
+		//--> //Tagname[@Attribute='Value'][Index]  -- Not much recommended
+		//--> //ParentTagname/ChildTagname  -- if single
+		//--> //ParentTagname/ChildTagnamep[Index] -- if multiple to differ
+		
+		driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("Admin");
+		
+		driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("Admin");
+		
+		driver.findElement(By.cssSelector("input[placeholder='Email']")).clear();
+		
+		driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("Sujit@gmail.com");
+				
+		//name
+		driver.findElement(By.name("inputPassword")).sendKeys("rahulshettyacademy1");
+		
+		//className
+		driver.findElement(By.className("signInBtn")).click();
+		
+		//CSS Selector -- Which we need to construct from the html code.It is generic locator
+		//if you want to validate it through the console
+		//$('input[placeholder="Name"]')
+		//Class name > tagname.classname
+		//Id > tagname#id 
+		//name > tagname#name
+		//Tagname[attribute='value']
+		//Tagname[attribute='value']:nth-child(Index)   --> It might differ from xpath some times. Because it takes the hidded value also.
+		
+		//Implicit Wait -- Max time out is 5 second
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		
+		System.out.println(driver.findElement(By.cssSelector("p.error")).getText());
+		
+		//How to check the attribute is unique in the browser
+		//There are tools available for that just google for selector hub and get the extensions for the perticular browser.
+		//If not open the console and then put in the $('put in the css selector')
+		
+		//Xpath
+		//how to write x path - //tagname[@attribute='Value']
+
+-------------------------------------------------------------------------------------------
+
+12) Sibling - Child to parent traves concept.
+* What is absulute x path : we shall start from the main parent. Root object.
+start with single slash --  /
+* What is relative x path : we can directly jump on the middle of some where
+sgtart with double slash -- //
+
+		//Sibling to Sibling
+		
+		driver.findElement(By.xpath("//header/div/button[1]/following-sibling::button[1]")).click();
+		
+		//Child to parent
+		
+		driver.findElement(By.xpath("//header/div/button[1]/parent::div")).click();
+------------------------------------------------------------------------------------------
+13) Windows activity.
+		//Run the browser in  maximize mode
+		driver.manage().window().maximize();
+		
+		//Two ways to navigate on the url :-
+		//When we use the get method selenium will stop unit the page is fully loaded.
+		//100% loading for the page.
+		driver.get("https://rahulshettyacademy.com/AutomationPractice");
+		//When we use navigate method selenium will not wait once the page is loaded it shall be continue (like some basisc elements are loaded it shall continue)
+		//partial loading of the page
+		driver.navigate().to("https://Google.com");
+		
+		//to navigate back
+		driver.navigate().back();
+		
+		//to navigate forward
+		driver.navigate().forward();
+		
+		//Difference between maximize and full screen.
+		//Maximize : 
+-----------------------------------------------------------------------------------------------------------
+14) Dropdown : Static
+
+
+		//Static drop down : Options in the drop downs are been fixed
+		//The tagname is select - it has a special class in selenium to handel it.
+		//Create the WebElement for the staticdrop downs and put the drop down path in that
+	
+		WebElement staticdropdown = driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency"));
+		
+		Select dropdown = new Select(staticdropdown);
+		dropdown.selectByVisibleText("USD");
+		Thread.sleep(2000);
+		System.out.println(dropdown.getFirstSelectedOption().getText());
+		dropdown.selectByIndex(2);
+		Thread.sleep(2000);
+		dropdown.selectByVisibleText("AED");
+		Thread.sleep(2000);
+
+		//Dropdown
+		
+	    driver.findElement(By.className("paxinfo")).click();
+	    Thread.sleep(2000);
+	    
+	    /*int i = 1;
+	    while(i<5)
+	    {
+	    	driver.findElement(By.id("hrefIncAdt")).click();
+	    	//Every time the i value shall be increased by 1
+	    	i++;
+	    }*/
+	    
+	    System.out.println(driver.findElement(By.className("paxinfo")).getText());
+	    
+	    for(int i=1;i<5;i++)
+	    {
+	    	driver.findElement(By.id("hrefIncAdt")).click();
+	    }
+	    
+	    driver.findElement(By.xpath("//input[@value='Done']")).click();
+	    
+	    Thread.sleep(2000);
+	    
+	    System.out.println(driver.findElement(By.className("paxinfo")).getText());
+
+//Dynamic Drop downs
+	    
+		driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).click();
+		driver.findElement(By.linkText("Mumbai (BOM)")).click();
+		Thread.sleep(2000);
+		
+		//Parent- Child in dropdowns
+		String a = driver.findElement(By.xpath("//div[@id='ctl00_mainContent_ddl_destinationStation1_CTNR'] //a[@value='MAA']")).getText();
+		System.out.println(a);
+		driver.findElement(By.linkText("Surat (STV)")).click();
+----------------------------------------------------------------------------------------------------------------------
+15) While Loop
+
+//Initilazation, condition, comparisison.
+
+	    int i = 1;
+	    while(i<5)
+	    {
+	    	driver.findElement(By.id("hrefIncAdt")).click();
+	    	//Every time the i value shall be increased by 1
+	    	i++;
+	    }
+
+For loop : The only difference in while loop and for loop is we write all the condition in one single line in the for loop
+
+	    for(int i=1;i<5;i++)e
+	    {
+	    	driver.findElement(By.id("hrefIncAdt")).click();
+	    }
+
+-----------------------------------------------------------------------------------------------------------------------------
+16) Alerts Popup
+
+Positive mode --> driver.switchTo().alert().accept(); 
+
+Negative mode --> driver.switchTo().alert().dismiss();
+
+There are some popup for the windows authentication popup , basically used in network related testing for that we use 'AutoIT' tool.
+----------------------------------------------------------------------------------------------------------------------------------
+
+17) Add to Cart -- IMP
+WebDriver driver = new EdgeDriver();
+		
+		int j = 0;
+
+		driver.manage().window().maximize();
+
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+		
+		Thread.sleep(3000);
+		
+		//expected
+		String[] items = {"Cauliflower","Cucumber","Brocolli","Beetroot"};
+		
+		
+		//generic click.
+		
+		List<WebElement> products = driver.findElements(By.cssSelector("h4.product-name"));
+		
+//		for(int i = 0;i<products.size();i++)
+//		{
+//			String name = products.get(i).getText();
+
+//			if(name.contains("Cucumber - 1 Kg"))
+//			{
+//				//click on the add to cart button.
+//				driver.findElements(By.xpath("//button[text()='ADD TO CART']")).get(i).click();
+//				break;
+//			}
+//		}
+		
+		//Check wheather name you extracted is present in array or not
+		for(int i = 0;i<products.size();i++)
+		{
+			//Format it to get actual vegitable name
+			String[] name = products.get(i).getText().split("-");
+			//To remove the spaces
+			String Formattedname = name[0].trim();
+			
+			System.out.println(name[0]);
+			
+			//Convert array into array list for easy search
+			List<String> New = Arrays.asList(items);
+
+			if(New.contains(Formattedname))
+			{
+				j++;
+				//click on the add to cart button.
+				driver.findElements(By.xpath("//div[@class='product-action']/button[@type='button']")).get(i).click();
+				//Thread.sleep(6000);
+				if(j==3)
+				{
+					break;
+				}
+			}
+		}
+		
+	}
+
+}
+
+--------------
+put in the names in a array
+put all the names in an list
+then put it in the for loop
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+18) Trim
+			//Format it to get actual vegitable name
+			String[] name = products.get(i).getText().split("-");
+			//To remove the spaces
+			String Formattedname = name[0].trim();
+
+---------------------------------------------------------------------------------------------------------------------
+19) Synchronization in selenium --IMP
+The implicit and explicit combination of both this a ideal situation.
+
+-Implicit Wait
+For example if there is a page which takes upto 2 seconds to load and we have given the implicit wait for 5 seconds. It shall only wait till 2 seconds and not for 5 seconds.
+Another example if there is a page and it takes upto 3 seconds to load and we have given the implicit wait for 6 seconds. And if the error occures at the 4th second it shall not imidiately through the error it shall wait for 6 seconds and then through the error.
+It work globally.
+
+driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5));
+
+globel level wait it shall be applied on each and every steps :-
+
+> driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+-Explicit Wait
+In this we can target any specific element.For example if a perticular page is taking 15 seconds and othere pages are getting loaded in 5 seconds. We can target the 15 seconds page element explicitely for which more time is taking place.
+
+There are two types of Explicit wait : 1) WebDriverWait
+
+WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(5)); --> We can also apply this condition globally and put in the below specific conditon for where ever needed.
+w.until(ExpectedConditions.visibilityOfElementLocated(By.className("promoInfo"))); --> It is one of the commonly used method. It expect to show the element first.
+
+-Thread.Sleep
+It is not a part of selenium. Also it does not have any logic. It is simple as you can halt your exection process. Its part of java.
+If a page gets loads in 2 seconds and we have provide the thread.sleep(5) as 5 seconds it shall passon for 5 seconds and then show the page.
+
+-Fluent Wait (On of the explicit part)
+Fluent wait finds the web element repeatedly at regular intervals of time until the timeout or till the object gets found.
+Unlike WebDriver wait, we need to build customized wait method based on condition
+Both WebDriverWait and fluentWait classes implement Wait interface.
+
+WEBDRIVERWAIT = 10 Seconds (Shall check every milli seconds)
+FLUENT WAIT = 10 Seconds, Polling 2 Seconds (It means shall check every 2 seconds in the 10 seconds)
+
+Fluent wait example : there is one ecart application
+There are two continius messages
+Your card is accepted(3seconds), your order is being processes(7 second) --> Confirmation message then
+here we user the fluent wait because the fluent wait shall first check on zeroth second and then check after the polling second if it is defined as 2 it shall check from the 3 second.
+
+Fluent wait and webdriver wait is two different classes implementing one common wait interface. ---IMP STATEMENT
+
+Advantages / disadvantages
+* Implicit :
+pros - Performance cause issues are not caught
+
+* Explicit :
+pros - waits are applied only at the target element
+cons - Shall have to code more
+
+-------------------------------------------------------------------------------------------------------------------------------------
+20) Actions class
+for mouse and keyboard.
+
+		// Action class with object called a
+		Actions a = new Actions(driver);
+		
+		driver.findElement(By.linkText("Your Account")).click();
+		
+		//Mouse Hover
+		//After specifying the element you need to build it
+		//Build means this below step is build but it shall not perform unit and unless the users tells to perform it.
+		a.moveToElement(driver.findElement(By.id("icp-nav-flyout"))).build().perform();
+
+-----------------------------------------------------------------------------------------------------------------------------------
+21) Window handle
+
+//Switch from parent to child
+		//First get the window handel id
+		//Set<String> is the return type which we need to define
+		Set<String> window = driver.getWindowHandles(); //[Parentid, Childid]
+		
+		//We have iterated over the window and get the id
+		Iterator<String>it = window.iterator();
+		//Control shall be on the 0 th index
+		String parentId = it.next();
+		//Control shall be on the 1 st index
+		String childId = it.next();
+		
+		System.out.println(window);
+		
+		//Shall switch to child window
+		driver.switchTo().window(childId);
+		
+		//store the text in a variable
+		//String uname = driver.findElement(By.linkText("mentor@rahulshettyacademy.com")).getText();
+		//System.out.println(uname);
+		
+		String output = driver.findElement(By.cssSelector(".im-para.red")).getText().split("at")[1].trim().split(" ")[0];
+		
+		//Again switch to the main parent window
+		driver.switchTo().window(parentId);
+		
+		driver.findElement(By.id("username")).sendKeys(output);
+
+--------------------
+		Set<String> window = driver.getWindowHandles();
+		Iterator<String> It = window.iterator();
+		String parentid = It.next();
+		String childid = It.next();
+
+------------------------------------------------------------------------------------------------------
+22) Limit webelement -- get in interview.
+
+import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class linkCount {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriver driver = new EdgeDriver();
+
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		// Give the count of links on the page. Each link have the "a" tag
+		System.out.println(driver.findElements(By.tagName("a")).size());
+
+		// Give the count of the footer section link
+		// Limit webdriver scope first
+		// Create the driver sub set
+		WebElement footer = driver.findElement(By.id("gf-BIG"));
+
+		// Now we have limited the section and shall get size of link.
+		System.out.println(footer.findElements(By.tagName("a")).size());
+
+		// Give the count for the first coloumn only
+		WebElement section1 = footer.findElement(By.xpath("//table/tbody/tr/td[1]/ul"));
+
+		System.out.println(section1.findElements(By.tagName("a")).size());
+
+		// bottom link count
+		WebElement bottom = driver.findElement(By.cssSelector(".col-sm-8"));
+
+		System.out.println(bottom.findElements(By.tagName("a")).size());
+		
+		//click on each link and check wheather the page is getting opened or not
+
+		for(int i=1;i<section1.findElements(By.tagName("a")).size();i++)
+		{
+			//Key combination
+			String clickonlink = Keys.chord(Keys.CONTROL, Keys.ENTER);
+			
+			//when there are the keyboard methods shall have to pass it in sendKeys
+			section1.findElements(By.tagName("a")).get(i).sendKeys(clickonlink);
+			
+			Thread.sleep(5000L);
+		}//opens all the tabs 
+			
+			Set<String> getTitle = driver.getWindowHandles();
+
+			//It shall switch between the tabs
+			Iterator<String> IT = getTitle.iterator();
+			
+			//While loop continiously execute the loops until the condition comes to false.
+			//hasNext tells that is there any next window present or not
+			while(IT.hasNext())
+			{
+				//id.next print us the windows title
+				driver.switchTo().window(IT.next());
+				System.out.println(driver.getTitle());
+			}//gives you the title.
+		}
+
+	}
+---------------------------------------------------------------------------------------------------------------------------------
+23) Calander UI
+
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+
+public class Calanderui {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriver driver = new EdgeDriver();
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5));
+		
+		driver.manage().window().maximize();
+
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+		
+		String monthNumber = "6";
+		String date = "15";
+		String year = "2027";
+		String[] expectedList = {monthNumber, date, year};
+		
+		driver.findElement(By.linkText("Top Deals")).click();
+		
+		Set<String> window = driver.getWindowHandles();
+		Iterator<String> It = window.iterator();
+		String parentid = It.next();
+		String childid = It.next();
+		
+		driver.switchTo().window(childid);
+		
+		System.out.println(driver.findElement(By.className("greenLogo")).getText());
+		
+		driver.findElement(By.xpath("//button[2]")).click();
+
+		for(int i=0;i<=1;i++)
+		{
+			driver.findElement(By.cssSelector(".react-calendar__navigation__label")).click();
+		}
+		
+		driver.findElement(By.xpath("//button[text()='"+year+"']")).click();
+		
+		driver.findElements(By.cssSelector(".react-calendar__year-view__months__month")).get(Integer.parseInt(monthNumber)-1).click();
+		
+		driver.findElement(By.xpath("//abbr[text()='"+date+"']")).click();
+		
+		List<WebElement> data = driver.findElements(By.cssSelector(".react-date-picker__inputGroup__input"));
+		
+		for(int i=0;i<data.size();i++)
+		{
+			System.out.println(data.get(i).getAttribute("Value"));
+			Assert.assertEquals(data.get(i).getAttribute("Value"), expectedList[i]);
+		}
+		
+		driver.quit();
+	}
+	
+	}
+
+-------------------------------------------------------------------------------------------------------------------------------------
+24) Headless mode : Means the browser shall not be open.
+--------------------------------------------------------------------------------------------------------------------------------------
+25) Page Scrolling
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class Scrolling {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriver driver = new EdgeDriver();
+
+		driver.manage().window().maximize();
+
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+
+		// Schroll in selenium. Using JavascriptExecutor
+		// need to cast the driver with the JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		//The scroll script shall be stored in the below
+		//Open console in the browser -> enter this -> window.scrollBy(0,500) then hit enter it shall be executed -> these are the coordinator
+		//Trial and check.
+		js.executeScript("window.scrollBy(0,500)"); //it is windows scroll
+		
+		//So we can differentiate
+		Thread.sleep(3000);
+		
+		//Scroll inside the table
+		//Open console in the browser -> enter this -> document.querySelector('.tableFixHead').scroll(0,500) then hit enter it shall be executed
+		//Put in the element fro which you need to scroll
+		js.executeScript("document.querySelector('.tableFixHead').scroll(0,500)");
+		
+		//For horizantal scroll
+		//Open console in the browser -> enter this -> document.querySelector('.tableFixHead').scrollLeft=5000 then hit enter it shall be executed
+		//Open console in the browser -> enter this -> window.scrollLeft=5000 then hit enter it shall be executed -> these are the coordinator
+		
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+26) Handel Table:
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.Assert;
+
+public class Handletablegrid {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver = new EdgeDriver();
+
+		driver.manage().window().maximize();
+
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		
+		List<WebElement> values = driver.findElements(By.xpath("//div[@class='tableFixHead'] //td[4]"));
+		int sum = 0;
+		
+		for(int i=0;i<values.size();i++)
+		{
+			//convert it into Integer
+			//then how to sum them
+		  sum = sum + Integer.parseInt(values.get(i).getText());
+		  
+		}
+		
+		System.out.println(sum);
+		
+		int total = Integer.parseInt(driver.findElement(By.className("totalAmount")).getText().split(":")[1].trim());
+		
+		Assert.assertEquals(sum, total);
+		
+		driver.close();
+
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+27) SSL Certification error
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+
+public class Sslcertification {
+
+	public static void main(String[] args) {
+		
+		//There is a chrome class which helps us is setting up the chrome beheviours
+		EdgeOptions co = new EdgeOptions();
+		
+		//We are telling our chrome that when ever the site is not secured, pass it.
+		co.setAcceptInsecureCerts(true);
+
+		WebDriver driver = new EdgeDriver(co);
+		
+		driver.manage().window().maximize();
+		
+		driver.get("https://expired.badssl.com/");
+
+	}
+
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+28) Browser behiviours
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Proxy;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.apache.commons.io.FileUtils;
+
+public class Browserbehaviour {
+
+	public static void main(String[] args) throws IOException {
+		
+		//These below options that you can use to customize and configure a BrowserDriver (might be Chrome, firefox, Edge) session.
+
+		// There is a chrome class which helps us is setting up the chrome beheviours
+		EdgeOptions options = new EdgeOptions();
+
+		// We are telling our chrome that when ever the site is not secured, pass it.
+		options.setAcceptInsecureCerts(true);
+		
+		//Add extensions to the browser
+		options.addEncodedExtensions("extension file path");
+		
+		//Pass Proxy
+		//A proxy or proxy server is a computer system that acts as an intermediary between a user's device and the internet
+		//So in java we cannot send the Proxy as it is. We have one proxy class for it.
+		Proxy proxy = new Proxy();
+		//which proxy to send.
+		proxy.setHttpProxy("Enter proxy string ex - ipaddress:44");
+		//Once proxy has been set send it in below statement.
+		options.setCapability("proxy", proxy);
+		
+		//Handle popup behevious. Ex. allow the location, allow the microphone, allow the cookies, etc.
+		//How to disable them.
+		options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
+		
+		//Set download directory path
+		//Hashmap is a class.
+		Map<String, Object> downloads = new HashMap<String, Object>();
+		//define the path
+		downloads.put("download.default_directory", "path for the directory to specify");
+		//pass it in the options
+		options.setExperimentalOption("download", downloads);
+		
+		WebDriver driver = new EdgeDriver(options);
+		
+		//How to clear the cookies for the browser
+		driver.manage().deleteAllCookies();
+		
+		//Delete only one cookies - need to specify the name
+		driver.manage().deleteCookieNamed("name of the perticular cookie");
+		
+		//Delete the session cookie
+		driver.manage().deleteCookieNamed("sessionKey"); //might be the same.
+		
+		//Maximize the browser window.
+		driver.manage().window().maximize();
+		
+		driver.get("Google.com");
+		
+		//Take the screenshot
+		//Cast the driver with the takescreenshot method object
+		//First we are casting the webdriver to take the screenshot.
+		//By using the method 'getScreenshotAs', and the output shall be 'FILE' that we are storing in a object 'src'
+		//This shall be visiable only when driver is casted with the TakeScreenshot method
+		
+		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		
+		//copy the file from the source object to the local machin.
+		FileUtils.copyFile(src, new File("D:\\Screenshot"));
+
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------
+29) Soft Assert and hard Assert
+- Soft Assert
+SoftAssert a = new SoftAssert();
+a.method which needs to be applied
+
+- Hard Assert
+Assert.method need to  be applied.
+-------------------------------------------------------------------------------------------------------------------------------
+30) Relative locators
+import static org.openqa.selenium.support.locators.RelativeLocator.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class Relativelocators {
+
+	public static void main(String[] args) {
+
+		// Below are the Relative Locators
+		// above(): Element located above with respect to the specified element
+		// Below(): Element located below with respect to the specified element
+		// toLeftOf(): Element located to the left of specified element
+		// toRightOf(): Element located to the right of specified element
+		
+		//You can find the relative locator webelement only with its "TagName"
+		
+		//Below is the syntax
+		// driver.findElement(with TagName("XX").above(WebElement))
+		
+		//Befor starting the relative locator we need to import the below static package as is shall not be auto suggested by selenium
+		// import static org.openqa.selenium.support.locators.RelativeLocator.*;
+		
+		WebDriver driver = new EdgeDriver();
+
+		driver.manage().window().maximize();
+
+		driver.get("https://rahulshettyacademy.com/angularpractice/");
+		
+		//above
+		WebElement editBoxName = driver.findElement(By.cssSelector("[name='name']"));
+		System.out.println(driver.findElement(with(By.tagName("label")).above(editBoxName)).getText());
+		
+		//below
+		WebElement date = driver.findElement(By.cssSelector("label[for*='date']"));
+		driver.findElement(with(By.tagName("input")).below(date)).click();
+		
+		//left
+		WebElement description = driver.findElement(By.xpath("//label[text()='Check me out if you Love IceCreams!']"));
+		driver.findElement(with(By.tagName("input")).toLeftOf(description)).click();
+		
+		//right
+		WebElement text = driver.findElement(By.xpath("//label[text()='Student']"));
+		driver.findElement(with(By.tagName("label")).toRightOf(text)).click();
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------
+31) Invoking Window and Tabs of browser
+
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class Invokewindow {
+
+	public static void main(String[] args) {
+
+		WebDriver driver = new EdgeDriver();
+
+		driver.manage().window().maximize();
+
+		driver.get("https://rahulshettyacademy.com/angularpractice/");
+		
+		//newWindow is used to give the command to the browser that you have to open a new WINDOW or TAB
+		//selenium shall open a new WINDOW or TAB and ready to take up something new
+		//But is doesn't mean that the control went to that tab
+		driver.switchTo().newWindow(WindowType.TAB);
+		
+		//when we call this method getWindowHandles selenium shall check how many windows are opened.
+		Set<String> window = driver.getWindowHandles();
+		Iterator<String> it = window.iterator();
+		String parentWindow = it.next();
+		//Switch to the child window
+		String childWindow = it.next();
+		
+		driver.get("https://rahulshettyacademy.com");
+		
+		String inputText = driver.findElements(By.cssSelector("a[href*='https://courses.rahulshettyacademy.com/p']")).get(1).getText();
+		
+		//Again switch to the parent window
+		driver.switchTo().window(parentWindow);
+		
+		WebElement name = driver.findElement(By.xpath("//label[text()='Name']"));
+		
+		driver.findElement(By.cssSelector("[name='name']")).sendKeys(inputText);
+		
+		//finally quit to close all the windows
+		driver.quit();
+	}
+
+}
+----------------------------------------------------------------------------------------------------------
+32) Check Hight, Width for a field
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class Gethight_width_of_webelement {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver = new EdgeDriver();
+
+		driver.manage().window().maximize();
+
+		driver.get("https://rahulshettyacademy.com/angularpractice/");
+		
+		WebElement name = driver.findElement(By.cssSelector("[name='name']"));
+		
+		//UX validation (height,width,pixels)
+		
+		//These methods shall provide you with the height dimensions
+		System.out.println(name.getRect().getDimension().getHeight());
+		
+		//These methods shall provide you with the height dimensions
+		System.out.println(name.getRect().getDimension().getWidth());
+
+	}
+
+}
+--------------------------------------------------------------------------------------

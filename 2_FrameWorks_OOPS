@@ -1,0 +1,127 @@
+1) How TestNG annotations help with Inheritance to remove boilerPlate code in Test
+- Inheritance
+- Basically inheritance means you can aquire the properties of your parent class.
+
+- Parent 
+package coreJava;
+
+public class Inheritanceparent {
+	
+	public void doThis()
+	{
+		System.out.println("I am here");
+	}
+}
+
+- Child
+package coreJava;
+
+import org.testng.annotations.Test;
+
+public class Inheritancechild extends Inheritanceparent{
+	
+	@Test
+	public void testRun() {
+		doThis();
+	}
+}
+
+- If there are any before or after methods defined in the parent class
+It shall first check it in the parent class then comes to the child class
+
+------------------------------------------------------------------------------------------------------------
+
+2) How to pass values from test through Parameterized Constructor & this Keyword
+
+- Single Responsiablity principles
+- Constructor
+- Also the below is called parameterized constructor
+
+* By default when every you creates an object for any class, a default constructor shall be called.
+* A Constructor name shall always be the class name
+* Constructor shall also have how many numbers of parameters we need to be reflected.
+
+        public class PS2 {
+	
+	//Constructor
+	public PS2(int a)
+	{
+		
+	}
+
+* public PS2(int a) --> int a --> this is called as instance variable which is defined inside the constructor
+So the variable which you have passed in the parenet class while calling the PS2 class
+it shall be placed inside it
+
+PS2 ps = new PS2(3); --> 3 shall be placed --> public PS2(int a) in the place of 'a'
+	
+* We can call our own class variable by the method 'this.'
+- Differentiate between class variable and instance variable
+
+        public class PS2 {
+	
+	int a;
+	
+	//Constructor
+	public PS2(int a)
+	{
+		this.a=a;
+	}
+        }
+---------------------------------------------------------------------------------------------------------
+
+3) Usage of Super Keyword in the Constructor to pass values to Parent Class
+- Utility class means we define all the methods inside it which is common to all the test cases.
+- Super key only works when there is a inheritance for it
+- RULE - When ever there is a super key word that should be the first line in the child constructor
+- Before you do  any operation in your own constructor first activate your parent constructor with all the details what it needs, so that's why that should be the first line in the child constructor
+- Child pass the values to the parent
+
+-1st
+
+import org.testng.annotations.Test;
+
+public class Inheritancechild extends Inheritanceparent{
+	
+	@Test
+	public void testRun() {
+		
+		PS2 ps = new PS2(3); //Parameterized Constructor
+		int a = 3;
+		
+		System.out.println(ps.multiplication());
+	}
+        }
+
+-2nd (child of 3rd)
+
+        public class PS2 extends PS3{
+
+	int a;
+	// Constructor
+	public PS2(int a) {
+		
+		//Why we put in the super here because its the child class responsiblity
+		//to send the value to the parent class
+		//super method do the same for it.
+		super(a);
+		this.a = a;
+	}
+	}
+
+-3rd (parent of 2nd)
+
+        public class PS3 {
+	
+	int a;
+	
+	public PS3(int a) {
+		this.a=a;
+	}
+
+	public int multiplication() {
+		a = a * 2;
+		return a;
+	}
+
+}

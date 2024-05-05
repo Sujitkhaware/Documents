@@ -83,7 +83,7 @@ On single click all the test cases should be run
 	  </methods>
 	  </class>
 ---------------------------------------------------------------------------------------------------------------
-13) How to include the test cases. - With the help of "include" tag
+13) How to include the test cases. - With help of "include" tag
 	  <methods>
 	  <include name="mobileLogin">
 	  </include>	  
@@ -175,7 +175,6 @@ The scope of this is limit to the perticular class
 	public void testAfterClass() {
 		System.out.println("I will execute before the class");
 	}
-
 ------------------------------------------------------------------------------------------------------------------------------------
 17) Groups concept
 Lets take an example if there are 100 testcases and client asked us to execute only a few test cases from each class let assume only 4 testcases from 4 different classes. (include)
@@ -414,3 +413,4 @@ just define it as - result.getName()
 - there is a file 'index.html', right click properties > copy the path
 - open it in a browser
 - You shall get the result
+------------------------------------------------------------------------------------------------------------------------

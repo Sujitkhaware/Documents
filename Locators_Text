@@ -1,0 +1,104 @@
+1)	ID
+•	By.id(“Value”)
+driver.findElement(By.id("inputUsername")).sendKeys("Admin");
+
+2)	LinkText
+•	By.Linktext(“Value”)
+driver.findElement(By.linkText("Forgot your password?")).click();
+
+3)	Xpath  Put it in double coots “”
+* What is absolute x path: we shall start from the main parent. Root object.
+Start with single slash -- /
+* What is relative x path: we can directly jump on the middle of some where
+Start with double slash -- //
+•	$x('//Tagname[@Attribute="Value"]')  if you want to validate it through the console
+•	//Tagname[@Attribute='Value']
+•	//Tagname[@Attribute='Value'][Index]   Not much recommended
+•	//ParentTagname/ChildTagname   if single
+•	//ParentTagname/ChildTagname[Index]  if multiple to differ
+•	//Tagname[contains(text(),'value')]  Contains represents the regular expression.
+•	//ParentTagname[@attribute='value']/ChildTagname[Index]
+•	//Tagname[text()='value of text']
+•	(//Tagname[contains(@class,’class name’)])[index number]
+
+•	Sibling to Sibling concept in xpath: It is not available in the css
+//ParentTagname/Childtagname/following-sibling::siblingtagname
+•	Child to parent concept in xpath: it is not available in the css
+//ParentTagname/Childtagname/parent::parenttagname
+•	Parent Child relationship to find object uniquely xpath:
+//ParentTagname[@attribute=’Value’] //ChildTagname[@attribute=’Value’]
+
+4)	Name
+•	By.name(“Value”)
+driver.findElement(By.name("inputPassword")).sendKeys("rahulshettyacademy1");
+5)	Class Name
+•	By.classname(“value”)
+driver.findElement(By.className("signInBtn")).click();
+
+6)	CssSelector  Which we need to construct for the html code. It is generic locator
+•	$('input[placeholder="Name"]')  if you want to validate it through the console
+•	tagname.classname
+•	tagname#id 
+•	tagname#name
+•	Tagname[attribute='value']
+•	Tagname[attribute='value']:nth-child(Index)    it might differ from xpath some times. Because it takes the hidden value also.
+•	ParentTagname ChildTagname  if single
+•	Tagname[attribute*='value']  star represents the regular expressions.
+•	Tagname.classname childTagname:last-of-type
+•	Tagname.classname childTagname:first-of-type
+-----------------------------------------------------------------------------------------------------
+RELATIVE LOCATORS
+// Below are the Relative Locators
+		// above(): Element located above with respect to the specified element
+		// Below(): Element located below with respect to the specified element
+		// toLeftOf(): Element located to the left of specified element
+		// toRightOf(): Element located to the right of specified element
+		
+		//You can find the relative locator webelement only with its "TagName"
+		
+		//Below is the syntax
+		// driver.findElement(with TagName("XX").above(WebElement))
+		
+		//Befor starting the relative locator we need to import the below static package as is shall not be auto suggested by selenium
+		// import static org.openqa.selenium.support.locators.RelativeLocator.*;
+		
+		WebDriver driver = new EdgeDriver();
+
+		driver.manage().window().maximize();
+
+		driver.get("https://rahulshettyacademy.com/angularpractice/");
+		
+		//above
+		WebElement editBoxName = driver.findElement(By.cssSelector("[name='name']"));
+		System.out.println(driver.findElement(with(By.tagName("label")).above(editBoxName)).getText());
+		
+		//below
+		WebElement date = driver.findElement(By.cssSelector("label[for*='date']"));
+		driver.findElement(with(By.tagName("input")).below(date)).click();
+		
+		//left
+		WebElement description = driver.findElement(By.xpath("//label[text()='Check me out if you Love IceCreams!']"));
+		driver.findElement(with(By.tagName("input")).toLeftOf(description)).click();
+		
+		//right
+		WebElement text = driver.findElement(By.xpath("//label[text()='Student']"));
+		driver.findElement(with(By.tagName("label")).toRightOf(text)).click();
+
+
+TimeOut:
+•	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+•	Thread.sleep(1000);  1000 second means 1 min
+
+driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("Admin");
+driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("Admin");
+driver.findElement(By.cssSelector("input[placeholder='Email']")).clear();
+driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("Sujit@gmail.com");
+driver.findElement(By.cssSelector("input[placeholder='Phone Number']")).sendKeys("123456789");
+driver.findElement(By.className("reset-pwd-btn")).click();
+System.out.println(driver.findElement(By.className("infoMsg")).getText());
+driver.findElement(By.className("go-to-login-btn")).click();
+Thread.sleep(1000);
+driver.findElement(By.id("inputUsername")).sendKeys("Admin");
+driver.findElement(By.name("inputPassword")).sendKeys("rahulshettyacademy");
+driver.findElement(By.id("chkboxOne")).click();
+driver.findElement(By.cssSelector("button[type='submit']")).click();

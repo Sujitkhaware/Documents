@@ -1,0 +1,122 @@
+1) How to declare variable for the browser
+
+- Create a new class
+
+public class Landingpage {
+	
+	WebDriver driver;
+	
+	public Landingpage(WebDriver driver) {
+		
+		this.driver = driver;
+	}
+
+- Declare it in the main page
+
+Landingpage page = new Landingpage(driver);
+
+-------------------------------------------------------------------------------------------
+
+2) How to declare the WebElement using the PageFactory.
+
+// Why we have wrote the PageFactory in the constructor only because we are telling that before executing any of the code first run the constructor.
+	public Landingpage(WebDriver driver) {
+		
+		this.driver = driver;
+		//Have to send to arguments
+		// 1) driver 2) this --> it refers to the current dirver.
+		PageFactory.initElements(driver, this);
+	}
+	
+
+//PageFactory
+
+@FindBy(id="userEmail")
+WebElement userEmail;
+
+- At run time the above shall be converted to the below
+
+WebElement userName = driver.findElement(By.id("userEmail"));
+And it shall be assigned to the variable following to that.
+
+---------------------------------------------------------------------------------------------------
+
+3) Define the wait on global level.
+- HOW TO CREATE ABSTRACT CLASS.
+- In abstract class we have to put in all the reusable components like waits, switch window
+- It is the parent class
+- Make sure that all the page object classes extends the main abstract class.
+- Every child have to give the driver.
+
+
+first we have to put in the super(driver) in the main page object class where the driver is and then we need to follow the below steps:
+
+public class AbstractComponent {
+	
+	WebDriver driver;
+	
+	public AbstractComponent(WebDriver driver) {
+		
+		this.driver = driver;
+	}
+
+	public void waitforElementToAppear (By findBy){
+		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(5));
+		w.until(ExpectedConditions.visibilityOfElementLocated(findBy);
+		
+	}
+
+}
+
+----------------------------------------------------------------------------------------------------------------------
+4) Interview question :
+Can you apply pagefactory with the webelement.findelement -> Not possible.
+
+----------------------------------------------------------------------------------------------------------------------
+5) As per inheriance child class shall have the access to parent class methods indirectly.
+
+-------------------------------------------------------------------------------------------------------------------
+6) Validations cannot go in pageobject files.
+Page Object file should only have the code to perform the actions.
+
+-------------------------------------------------------------------------------------------------------------------
+7) PageFactory examples
+
+@FindBy(id="userEmail")
+WebElement userEmail;
+
+@FindBy(css=".mb-3")
+List<WebElement> productList;
+
+declare list of WebElement in the actions :
+
+	public List<WebElement> getProductList() {
+		//take the below from the main abstract method
+		waitforElementToAppear(productBy);
+		return productList;
+	}
+	
+declare boolen statement in the actions
+
+	public boolean verifytheproduct(String productName)
+	{
+		Boolean match = CartList.stream().anyMatch(s -> s.getText().equalsIgnoreCase(productName));
+		return match;
+	}
+	
+8) State the method in the a page for another method
+
+	public CheckOutPage CheckedOut()
+	{
+		CheckOut.click();
+		
+		// below is the CheckOutPage is a another class which return type needs to be put in the current  class
+		return new CheckOutPage(driver);
+	}
+	
+	
+	//the below shall be mentioned in the main test
+	
+	AnotherClassName putInTheNameWhichYouWant = MainClassName.MethodName();
+	
+------------------------------------------------------------------------------------------------------------------
